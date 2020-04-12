@@ -27,5 +27,22 @@ target/
 /.nb-gradle/
 build/
 
+
+# GIT
+.git/
+
+# Java
+*.class
+# packages 
+*.jar
+*.war
+*.ear
+
+# Eclipse
+.settings/
+.buildpath
+.classpath
+.project
+
 ### VS Code ###
 .vscode/
