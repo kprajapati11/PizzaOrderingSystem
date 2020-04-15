@@ -6,11 +6,15 @@ import java.time.LocalTime;
 
 import javax.persistence.Entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 @Data
 @NoArgsConstructor
 @Entity
+@AllArgsConstructor
+@ToString
 public class OrderDetails {
 	private int orderID;
 	private int size;// holds the size of the pizza
