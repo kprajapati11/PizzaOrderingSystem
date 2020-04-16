@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 @Data
 @NoArgsConstructor
-@Entity
+//@Entity
 @AllArgsConstructor
 @ToString
 @Entity
