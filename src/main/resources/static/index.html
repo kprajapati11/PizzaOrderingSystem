@@ -2,9 +2,202 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>E.K.O Pizza Ordering</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+ <style>
+body{
+	background-color:#7f95a1;
+	text-align:center;
+	color: black;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Montserrat', sans-serif;
+	line-height:1.1em;
+	color: #3a3a3a;
+	font-weight:300;
+	margin-bottom:10px;
+}
+
+/* ==== heading ==== */
+
+.heading {
+	margin-top: 40px;
+	text-align:center;
+	width:100%;
+}
+
+.heading h3{
+	text-transform:uppercase;
+	padding:0;
+	margin:20px 0 30px 0;
+	font-size:40px;
+	font-weight:700;
+	text-align:center;
+	width:auto;
+	display:inline;
+}
+
+section.dark .heading h3 {	
+	color:#fff;
+}
+
+/* sub heading */
+
+.sub-heading {
+	text-align:center;
+	margin:20px 0 20px 0;
+}
+
+.sub-heading p {	
+	font-family: 'Lato', sans-serif;
+	font-size: 20px;
+	line-height:1.6em;
+	color: #3a3a3a;
+	font-weight:300;
+}
+
+section.dark .sub-heading p {	
+	color: #e9e9e9;
+}
+
+/* =======================================
+1. Header
+======================================== */
+header{
+	position:relative;
+}
+
+/* --- menu --- */
+
+.navigation {
+	margin:0 0 0;
+	padding:0;
+}
+
+#navigation .navbar {
+	padding:0;
+	margin:0;
+	
+}
+
+.navbar-brand {
+  float: left;
+  height: auto;
+  padding: 0;
+  font-size: 20px;
+  line-height: 1em;
+}
+
+.navbar-collapse {
+  max-height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.navbar .navbar-brand {
+	font-weight: 900;
+	color:black;
+	margin: 15px 0 0;
+	font-size: 40px;
+	text-transform: uppercase;
+	font-family: 'Montserrat', sans-serif;
+}
+.navbar .navbar-brand:focus {
+	outline: 0;
+}
+
+.navbar-nav {
+  margin-top: 0!important;
+  padding:0;
+
+}
+.navbar-nav > li > a {
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: 1em;
+}
+
+.navbar .nav > li > a,
+.navbar .nav > li > a:visited {
+    padding: 28px 13px 27px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: grey;
+    -webkit-box-shadow: 0 none;
+    box-shadow: 0 none;
+    -webkit-transition: all 0.3s; 
+    -moz-transition: all 0.3s; 
+    -o-transition: all 0.3s; 
+    transition: all 0.3s; 
+}
+
+.navbar .nav > li > a:hover,
+.navbar .nav > li > a:focus,
+.navbar .nav > li > a:active,
+.navbar .nav > li.active > a {
+    text-decoration: none;
+    background: none !important;
+    outline: 0 none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+	}
+.default {
+	background:black;
+	border-bottom:1px solid transparent;
+	opacity: 0.8;
+}
+
+
+
+.fixed {
+	position: fixed;
+	background:#2a2a2a;
+	border:none;
+	top:0;
+	left: 0;
+	width: 100%;
+	box-shadow: 0 0 10px #666;
+	-webkit-box-shadow: 0 0 10px #666;
+	-moz-box-shadow: 0 0 10px #666;
+</style>
+ 
 </head>
 <body>
 
+<div id = "container-fluid">
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      
+      <a class="navbar-brand" href="index.html">E.K.O PIZZA ORDERING</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+			<li><a href="index.html">Home Page</a></li>
+			<li><a href = "">Place Order</a></li>
+			<li><a href = "customerRegistration.html">Registration</a></li>
+      </ul>
+    </div>
+	</div>
+	</nav>	
+//--->***place code here***-->
+
+<a href="OrderNow" type="button">Order Now</a><br />
+<a href="viewMenu" type="button">View The Menu</a><br />
+<a href="newCustomer" type="button">new customer registration</a>
+
+
+
+
+
+</div>
+
 </body>
+
 </html>
