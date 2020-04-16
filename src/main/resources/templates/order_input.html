@@ -4,6 +4,13 @@
 <title>Order Input Page</title>
 </head>
 <body>
+<form th:object="${newOrder}" th:action="@{/update/{id}(id=${newOrder.id})}" method=POST>
+Order ID: <input name="orderID" size="20" th:field="*{orderID}"><br />
+E mail: <input name="email" size="20" th:field="*{email}"><br />
+Amount: <input name="Amount" size="20" th:field="*{Amount}"><br />
 
+<input name="Submit" type="submit" value="submit" />
+</form>
+<a href="../viewAll">View Order</a>
 </body>
 </html>
