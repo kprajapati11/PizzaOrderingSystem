@@ -1,9 +1,14 @@
 package dmacc.beans;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,14 +22,18 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Embeddable
 public class Customer {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int customerId;
-	private String customerName;
-	private String customerPhone;
+	private int cId;
+	private String Name;
+	private String Phone;
+	private String email;
 	@Autowired
-	private Address customerAddress;
+	private Address address;
+	@OneToMany(targetEntity = Orders.class,cascade = CascadeType.ALL)
+	@JoinColumn(name = "cp_fk", referencedColumnName = "id")
+	private List<Orders> pizza;
 	
 	
 
