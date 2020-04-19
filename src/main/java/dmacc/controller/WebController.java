@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import dmacc.beans.Orders;
-import dmacc.repositories.CustomerRepository;
-import dmacc.repositories.OrderDetailsRepository;
-import dmacc.repositories.OrdersRepository;
-import dmacc.repositories.PizzaRepository;
+import dmacc.beans.orders;
+import dmacc.repository.CustomerRepository;
+import dmacc.repository.OrderDetailsRepository;
+import dmacc.repository.OrdersRepository;
+import dmacc.repository.PizzaRepository;
 
 @Controller
 public class WebController {
@@ -35,29 +35,29 @@ public class WebController {
 	}
 	@GetMapping("/newOrder")
 	public String addNewItem(Model model) {
-		Orders o = new Orders();
+		orders o = new orders();
 		model.addAttribute("newOrder", o);
 		return "orderForm";
 	}
 	@PostMapping("/newOrder")
-	public String addNewOrder(@ModelAttribute Orders o, Model model) {
+	public String addNewOrder(@ModelAttribute orders o, Model model) {
 		oRepo.save(o);
 		return viewOrder(model);
 	}
 	@GetMapping("/edit/{id}")
 	public String showUpdateOrder(@PathVariable("id") int id, Model model) {
-		Orders o = oRepo.findById(id).orElse(null);
+		orders o = oRepo.findById(id).orElse(null);
 		model.addAttribute("newOrder", o);
 		return "orderForm";
 	}
 	@PostMapping("/update/{id}")
-	public String reviseOrder(Orders o, Model model) {
+	public String reviseOrder(orders o, Model model) {
 		oRepo.save(o);
 		return viewOrder(model);
 	}
 	@GetMapping("/delete/{id}")
 	public String deleteOrder(@PathVariable("id") int id, Model model) {
-		Orders o = oRepo.findById(id).orElse(null);
+		orders o = oRepo.findById(id).orElse(null);
 		oRepo.delete(o);
 		return viewOrder(model);
 	}

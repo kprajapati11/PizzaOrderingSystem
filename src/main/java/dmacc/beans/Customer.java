@@ -31,9 +31,9 @@ public class Customer {
 	private String email;
 	@Autowired
 	private Address address;
-	@OneToMany(targetEntity = Orders.class,cascade = CascadeType.ALL)
+	@OneToMany(targetEntity = orders.class,cascade = CascadeType.ALL)
 	@JoinColumn(name = "cp_fk", referencedColumnName = "id")
-	private List<Orders> pizza;
+	private List<orders> pizza;
 	
 	
 
