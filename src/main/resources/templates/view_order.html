@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>View Order</title>
+
+<style type="text/css">
+    span {
+        display: inline-block;
+        width: 200px;
+        text-align: left;
+    }
+</style>
 </head>
 <body>
-
+<div align="center">
+	<h2>The order detail!</h2>
+	<span> th:each="currentOrder: ${orders}"></span><br/>
+	<span> th:text="${currentOrder.id}" /></span><br/>
+	<span>th:text="${currentOrder.orderID}" /></span><br/>
+	<span> th:text="${currentOrder.email}" /></span><br/>
+	<span> th:text="${currentOrder.Amount}" /></span><br/>
+	<span><a th:href="@{/edit/{id}(id=${currentOrder.id})}">Edit</a></span><br/>
+	<span><a th:href="@{/delete/{id}(id=${currentOrder.id})}">Delete</a></span><br/>
+	
+</div>
+<a href="../ Link to ">Add a new order</a>
 </body>
 </html>
