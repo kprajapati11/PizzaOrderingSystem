@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import dmacc.beans.Orders;
-import dmacc.repositories.CustomerRepository;
-import dmacc.repositories.OrderDetailsRepository;
-import dmacc.repositories.OrdersRepository;
-import dmacc.repositories.PizzaRepository;
+import dmacc.repository.CustomerRepository;
+import dmacc.repository.OrderDetailsRepository;
+import dmacc.repository.OrdersRepository;
+import dmacc.repository.PizzaRepository;
 
 @Controller
 public class WebController {

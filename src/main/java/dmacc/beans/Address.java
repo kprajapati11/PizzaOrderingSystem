@@ -16,6 +16,6 @@ import lombok.ToString;
 public class Address {
 	private String Street;
 	private String city;
-	private String zipCode;
-	
+	private String zipCode;	
 
+}
