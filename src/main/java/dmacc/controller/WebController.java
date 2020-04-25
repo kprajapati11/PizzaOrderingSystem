@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import dmacc.beans.Customer;
 import dmacc.beans.Orders;
 import dmacc.repositories.CustomerRepository;
 import dmacc.repositories.OrderDetailsRepository;
 import dmacc.repositories.OrdersRepository;
-import dmacc.repositories.PizzaRepository;
+
+
 
 @Controller
 public class WebController {
@@ -20,11 +22,8 @@ public class WebController {
 	CustomerRepository cRepo;
 	@Autowired
 	OrdersRepository oRepo;
-	@Autowired
-	OrderDetailsRepository odRepo;
-	@Autowired
-	PizzaRepository pRepo;
-	
+
+
 	@GetMapping({"/", "viewOrder"})
 	public String viewOrder(Model model) {
 		if(oRepo.findAll().isEmpty()) {
@@ -60,6 +59,45 @@ public class WebController {
 		Orders o = oRepo.findById(id).orElse(null);
 		oRepo.delete(o);
 		return viewOrder(model);
+	}
+	
+	/*********************************************************************/
+	/* Customer controller methods */
+	@GetMapping({"/", "viewAll"})
+	public String viewAllCustomers(Model model) {
+		if(cRepo.findAll().isEmpty()) {
+			return addNewCustomer(model);
+		}
+		model.addAttribute("contacts", cRepo.findAll());
+		return "customer_result";
+	}
+	@GetMapping("/addCustomer")
+	public String addNewCustomer(Model model) {
+		Customer c = new Customer();
+		model.addAttribute("newCustomer", c);
+		return "customerForm";
+	}
+	@PostMapping("/addCustomer")
+	public String addNewCustomer(@ModelAttribute Customer c, Model model) {
+		cRepo.save(c);
+		return viewAllCustomers(model);
+	}
+	@GetMapping("/edit/{id}")
+	public String showUpdateCustomer(@PathVariable("id") int id, Model model) {
+		Customer c = cRepo.findById(id).orElse(null);
+		model.addAttribute("newCustomer", c);
+		return "customerForm";
+	}
+	@PostMapping("/update/{id}")
+	public String reviseCustomers(Customer c, Model model) {
+		cRepo.save(c);
+		return viewAllCustomers(model);
+	}
+	@GetMapping("/delete/{id}")
+	public String deleteUser(@PathVariable("id") int id, Model model) {
+		Customer c = cRepo.findById(id).orElse(null);
+		cRepo.delete(c);
+		return viewAllCustomers(model);
 	}
 
 }
