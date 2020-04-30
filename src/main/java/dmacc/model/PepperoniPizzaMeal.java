@@ -11,35 +11,43 @@ public class PepperoniPizzaMeal extends PizzaMeal{
 		this.pizzaPrice = getPriceFromSize(size);
 	}
 
-	public BigDecimal getPrice() {
+		
+	public BigDecimal getPizzaPrice() {
 		return pizzaPrice;
 	}
 
-	public void setPrice(BigDecimal price) {
-		this.pizzaPrice = price;
+	public void setPizzaPrice(BigDecimal pizzaPrice) {
+		this.pizzaPrice = pizzaPrice;
 	}
-	
+
+
 	private BigDecimal getPriceFromSize(String size) {
 		BigDecimal price = null;
 		switch(size) {
-			case "small":
+			case "SMALL":
 				price = BigDecimal.valueOf(9.99);
 				break;
-			case "medium":
+			case "MEDIUM":
 				price = BigDecimal.valueOf(12.99);
 				break;
-			case "large":
+			case "LARGE":
 				price = BigDecimal.valueOf(15.99);
 				break;
 			}
 		return price;
 	}
 
-	public BigDecimal getTotalPriceAmount() {
+	
+	public BigDecimal getTotalPrice() {
 		totalPrice = BigDecimal.ZERO;
-		totalPrice = this.pizzaPrice.add(getTotalItemsAmount());		
+		totalPrice = this.pizzaPrice.add(super.getTotalItemsAmount());		
 		return totalPrice;
 	}
+
+	public void setTotalPrice(BigDecimal totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
 	
 	@Override
 	public String toString() {

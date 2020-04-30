@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Online Pizza Order - Order you Pizza here</title>
+</head>
+<body>
+	<form th:object="${pizzaMeal}" th:action="@{/buildPizzaMeal}" method=POST>
+	
+	<!-- select pizza name -->
+	Pizza Name: <select  th:field="*{name}" >
+						<option value="">Nothing selected</option>
+                        <option th:each="pizza : ${T(dmacc.util.PizzaName).values()}"
+                                th:value="${pizza}"
+                                th:text="${pizza}">pizza
+                        </option>
+				</select>
+	
+	
+	<!-- select pizza size -->
+	Pizza Size:<select  th:field="*{size}" >
+						<option value="">Nothing selected</option>
+                        <option th:each="pizzaSize : ${T(dmacc.util.PizzaSize).values()}"
+                                th:value="${pizzaSize}"
+                                th:text="${pizzaSize}">Size
+                        </option>
+				</select>
+	
+	<!-- select from the items to add on -->
+		<ul>
+			<li th:field="*{itemsList[__${i.index}__]}" th:each="item, i : ${itemsList}">
+				<input type="checkbox"  th:field="*{itemsList[__${i.index}__]}"   th:value="${item.itemName}"/> 
+				 <label th:text="${item.itemName}"></label>
+			</li>
+		</ul>
+	
+		<input name="Submit" type="submit" value="submit" />
+	</form>
+	<a href="../createPizza">Create a Pizza</a>
+
+</body>
+</html>

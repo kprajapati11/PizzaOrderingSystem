@@ -1,8 +1,11 @@
 package dmacc.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class PizzaBuilder {
 	
-	public static PizzaMeal buildPizza(String name, String size) {
+	public PizzaMeal buildPizza(String name, String size) {
 		PizzaMeal pizza = null;
 		
 		if(name.equals("chicken")) {

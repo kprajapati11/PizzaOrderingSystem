@@ -6,6 +6,10 @@ public class Item{
 	private String itemName;
 	private BigDecimal price;
 	
+	public Item() {
+		
+	}
+	
 	public Item(String itemName, BigDecimal price) {
 		this.itemName = itemName;
 		this.price = price;			

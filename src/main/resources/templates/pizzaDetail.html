@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>View All Books</title>
+</head>
+<body>
+	<form>
+		<table>
+			<tbody th:each="currentPizza : ${pizzaDetail}">
+				<tr>
+					<td>Meal Type : </td>
+					<td th:text="${currentPizza.name}"/>
+				</tr>
+				<tr>
+					<td> Meal Size : </td>
+					<td th:text="${currentPizza.size}" />
+				</tr>
+				<tr>
+					<td> Total Price : </td>
+					<td th:text="${currentPizza.totalPrice}" /> 					
+				</tr>	
+			</tbody>	
+		</table>
+	</form>
+	<a href="../newPizza">Place an order</a>
+
+</body>
+</html>

@@ -9,19 +9,20 @@ import dmacc.model.VegPizzaMeal;
 
 public class PizzaTest {
 	public static void main(String[] args) {
+		PizzaBuilder pizzaBuilder = new PizzaBuilder();
 		
-		CheesePizzaMeal cheeseMeal = (CheesePizzaMeal) PizzaBuilder.buildPizza("cheese", "medium");
+		CheesePizzaMeal cheeseMeal = (CheesePizzaMeal) pizzaBuilder.buildPizza("cheese", "medium");
 		cheeseMeal.addItem(new Item("onion", BigDecimal.valueOf(2.0)));
 		cheeseMeal.addItem(new Item("olive", BigDecimal.valueOf(3.0)));
 		cheeseMeal.addItem(new Item("Coke", BigDecimal.valueOf(2.99)));		 
 		System.out.println(cheeseMeal.toString());
-		System.out.println(cheeseMeal.getTotalPriceAmount());		
+		//System.out.println(cheeseMeal.getTotalPriceAmount());		
 
-		VegPizzaMeal vegMeal = (VegPizzaMeal) PizzaBuilder.buildPizza("vegpizza", "large");
+		VegPizzaMeal vegMeal = (VegPizzaMeal) pizzaBuilder.buildPizza("vegpizza", "large");
 		vegMeal.addItem(new Item("onion", BigDecimal.valueOf(2.0)));
 		vegMeal.addItem(new Item("olive", BigDecimal.valueOf(3.0)));
 		vegMeal.addItem(new Item("Coke", BigDecimal.valueOf(2.99)));
 		System.out.println(vegMeal.toString());
-		System.out.println(vegMeal.getTotalPriceAmount());
+		//System.out.println(vegMeal.getTotalPriceAmount());
 	}
 }

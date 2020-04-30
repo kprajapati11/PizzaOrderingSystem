@@ -10,6 +10,17 @@ public class PizzaMeal {
 	private List<Item> itemsList;
 	
 	
+	public PizzaMeal() {
+		
+	}
+	
+	public PizzaMeal(String name, String size, List<Item> itemList) {
+		this.name = name;
+		this.size = size;
+		this.itemsList = itemList;
+		
+	}
+	
 	public PizzaMeal(String name, String size) {
 		this.name = name;
 		this.size = size;
@@ -35,6 +46,10 @@ public class PizzaMeal {
 	public List<Item> getItemsList() {
 		return itemsList;
 	}
+	
+	public void setItemsList(List<Item> itemsList) {
+		this.itemsList = itemsList;
+	}
 
 	public void addItem(Item item) {
 		if(this.itemsList == null ) {
@@ -47,7 +62,9 @@ public class PizzaMeal {
 		BigDecimal totalItemsAmount = BigDecimal.ZERO;
 		if(itemsList != null && !itemsList.isEmpty()) {
 			for(Item item : itemsList) {
-				totalItemsAmount  = totalItemsAmount.add(item.getPrice());			
+				if(item!=null) {
+					totalItemsAmount  = totalItemsAmount.add(item.getPrice());	
+				}
 			}
 		}
 		return totalItemsAmount;
