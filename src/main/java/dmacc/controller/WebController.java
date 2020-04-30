@@ -96,20 +96,14 @@ public class WebController {
 				
 				SupremePizzaMeal customerMeal = new SupremePizzaMeal(pizza.getName(), pizza.getSize());
 				customerMeal.setItemsList(pizza.getItemsList());
-				model.addAttribute("pizzaDetail", customerMeal);	
-				
+				model.addAttribute("pizzaDetail", customerMeal);					
 			}
 			
 			return "pizzaDetail";
 		}
 	
 	
-	
-
-	
-	
-
-	
+		
 	@GetMapping({ "/viewOrder" })
 	public String viewOrder(Model model) {
 		if (oRepo.findAll().isEmpty()) {
