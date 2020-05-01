@@ -47,9 +47,9 @@
             <nav>
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="index.html">Home Page</a></li>
-				<li><a href = "">Place Order</a></li>
+				<li><a href = "#about">View Menu</a></li>
 				<li><a href = "customerRegistration.html">Registration</a></li>
-				<li><a href="/newPizza">new Pizza</a></li>
+				<li><a href="pizzaDetail.html">Order Pizza</a></li>
               </ul>
             </nav>
           </div>
@@ -77,6 +77,10 @@
  <!-- SlideShow end -->
   
 <!---***place code here***-->
+<br/><br/>
+<div class = "container">
+<p>Your Meal Order Description</p>
+</div>
 <div class = "container">
 	<form>
 		<table>
@@ -90,15 +94,13 @@
 					<td th:text="${currentPizza.size}" />
 				</tr>
 				<tr>
-					<td> Total Price : </td>
+					<td> Total Price :$ </td>
 					<td th:text="${currentPizza.totalPrice}" /> 					
 				</tr>	
 			</tbody>	
 		</table>
-		Customer Id: <input name="customerId" size="20"  ><br />
-		Credit Card Num: <input name="creditCardId" size="20"   ><br />
 	</form>
-	<a href="../newPizza" type ="button">Place an order</a>
+	<a href="../newPizza" type ="button">Build Another Pizza</a>
 </div>
 <!-----End Code Here----->
 
