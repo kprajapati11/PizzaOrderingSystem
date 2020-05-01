@@ -104,46 +104,36 @@ public class WebController {
 	
 	
 		
-	@GetMapping({ "/viewOrder" })
+	
+	@GetMapping({ "/order" })
 	public String viewOrder(Model model) {
-		if (oRepo.findAll().isEmpty()) {
-			return addNewItem(model);
-		}
-		model.addAttribute("order", oRepo.findAll());
-		return "orderDetails";
+		Orders order = new Orders();
+		model.addAttribute("order", order);
+		return "pizzaDetail";
 	}
 
-	@GetMapping("/newOrder")
-	public String addNewItem(Model model) {
-		Orders o = new Orders();
-		model.addAttribute("newOrder", o);
-		return "orderForm";
-	}
+	/*
+	 * @GetMapping("/newOrder") public String addNewItem(Model model) { Orders o =
+	 * new Orders(); model.addAttribute("newOrder", o); return "orderForm"; }
+	 */
 
 	@PostMapping("/newOrder")
-	public String addNewOrder(@ModelAttribute Orders o, Model model) {
-		oRepo.save(o);
-		return viewOrder(model);
+	public String addNewOrder(@ModelAttribute Orders order, Model model) {
+		//oRepo.save(order);
+		return "view_order";
 	}
 
-	@GetMapping("/edit/{id}")
-	public String showUpdateOrder(@PathVariable("id") int id, Model model) {
-		Orders o = oRepo.findById(id).orElse(null);
-		model.addAttribute("newOrder", o);
-		return "orderForm";
-	}
-
-	@PostMapping("/update/{id}")
-	public String reviseOrder(Orders o, Model model) {
-		oRepo.save(o);
-		return viewOrder(model);
-	}
-
-	@GetMapping("/delete/{id}")
-	public String deleteOrder(@PathVariable("id") int id, Model model) {
-		Orders o = oRepo.findById(id).orElse(null);
-		oRepo.delete(o);
-		return viewOrder(model);
-	}
+	/*
+	 * @GetMapping("/edit/{id}") public String showUpdateOrder(@PathVariable("id")
+	 * int id, Model model) { Orders o = oRepo.findById(id).orElse(null);
+	 * model.addAttribute("newOrder", o); return "orderForm"; }
+	 * 
+	 * @PostMapping("/update/{id}") public String reviseOrder(Orders o, Model model)
+	 * { oRepo.save(o); return viewOrder(model); }
+	 * 
+	 * @GetMapping("/delete/{id}") public String deleteOrder(@PathVariable("id") int
+	 * id, Model model) { Orders o = oRepo.findById(id).orElse(null);
+	 * oRepo.delete(o); return viewOrder(model); }
+	 */
 
 }

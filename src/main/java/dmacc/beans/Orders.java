@@ -1,7 +1,7 @@
 
 package dmacc.beans;
 
-import java.util.List;
+import java.math.BigDecimal;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,8 +15,10 @@ public class Orders {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int orderId;
 	private int customerId;
-	private String orderDesc;
-	private float totalAmt;
+	private String mealName;
+	private String mealSize;
+	private BigDecimal totalAmt;
+	private String creditCard;
 
 	public Orders() {
 
@@ -38,21 +40,37 @@ public class Orders {
 		this.customerId = customerId;
 	}
 
-	
-	public String getOrderDesc() {
-		return orderDesc;
+	public String getMealName() {
+		return mealName;
 	}
 
-	public void setOrderDesc(String orderDesc) {
-		this.orderDesc = orderDesc;
+	public void setMealName(String mealName) {
+		this.mealName = mealName;
 	}
 
-	public float getTotalAmt() {
+	public String getMealSize() {
+		return mealSize;
+	}
+
+	public void setMealSize(String mealSize) {
+		this.mealSize = mealSize;
+	}
+
+	public BigDecimal getTotalAmt() {
 		return totalAmt;
 	}
 
-	public void setTotalAmt(float totalAmt) {
+	public void setTotalAmt(BigDecimal totalAmt) {
 		this.totalAmt = totalAmt;
 	}
 
+	public String getCreditCard() {
+		return creditCard;
+	}
+
+	public void setCreditCard(String creditCard) {
+		this.creditCard = creditCard;
+	}
+
+	
 }

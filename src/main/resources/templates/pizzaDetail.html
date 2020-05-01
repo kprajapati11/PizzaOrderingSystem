@@ -2,15 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>View All Books</title>
+<title>View Order</title>
 </head>
 <body>
-	<form>
+	<form  th:object="${order}" th:action="@{/newOrder}" method=POST>
 		<table>
 			<tbody th:each="currentPizza : ${pizzaDetail}">
 				<tr>
-					<td>Meal Type : </td>
-					<td th:text="${currentPizza.name}"/>
+					<td >Meal Type : </td>
+					<td th:text="${currentPizza.name}" />
 				</tr>
 				<tr>
 					<td> Meal Size : </td>
@@ -18,14 +18,14 @@
 				</tr>
 				<tr>
 					<td> Total Price : </td>
-					<td th:text="${currentPizza.totalPrice}" /> 					
+					<td th:text="${currentPizza.totalPrice}"  /> 					
 				</tr>	
 			</tbody>	
 		</table>
 		Customer Id: <input name="customerId" size="20"  ><br />
-		Credit Card Num: <input name="creditCardId" size="20"  ><br />
+		Credit Card Num: <input name="creditCardId" size="20"   ><br />
 	</form>
-	<a href="../newPizza">Place an order</a>
+	<input name="Submit" type="submit" value="submit" />
 
 </body>
 </html>
