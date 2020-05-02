@@ -9,188 +9,131 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import dmacc.beans.Customer;
-<<<<<<< HEAD
+import dmacc.beans.Orders;
 import dmacc.model.CheesePizzaMeal;
 import dmacc.model.ChickenPizzaMeal;
 import dmacc.model.Item;
 import dmacc.model.PepperoniPizzaMeal;
+import dmacc.model.PizzaBuilder;
 import dmacc.model.PizzaMeal;
 import dmacc.model.SupremePizzaMeal;
 import dmacc.model.VegPizzaMeal;
 import dmacc.repository.CustomerRepository;
+import dmacc.repository.OrdersRepository;
+import dmacc.repository.PizzaRepository;
 import dmacc.util.PizzaName;
-=======
-import dmacc.beans.Orders;
-import dmacc.repositories.CustomerRepository;
-import dmacc.repositories.OrderDetailsRepository;
-import dmacc.repositories.OrdersRepository;
 
-
->>>>>>> 4f8fcf83a9230b8cce368fa2830880b536466a7b
 
 @Controller
 public class WebController {
 
-	@Autowired
-<<<<<<< HEAD
-	private CustomerRepository cRepo;
+	
+	  @Autowired 
+	  private CustomerRepository cRepo;
+	  
+	  @Autowired 
+	  private PizzaRepository pRepo;	 
+	  
+	  @Autowired
+	  private OrdersRepository oRepo;
+	  
+	  
 
-	@GetMapping("/newPizza")
-	public String createNewPizza(Model model) {
-		// this is a model only to display in UI
-		PizzaMeal pizza = new PizzaMeal();
-		pizza.addItem(new Item("onion", null));
-		pizza.addItem(new Item("bacon", null));
-		pizza.addItem(new Item("olive", null));
-		pizza.addItem(new Item("pineapple", null));
-		pizza.addItem(new Item("pepper", null));
-		pizza.addItem(new Item("tomato", null));
-
-		model.addAttribute("pizzaMeal", pizza);
-		model.addAttribute("itemsList", pizza.getItemsList());
-
-		return "pizza";
-	}
-
-	/*
-	 * @PostMapping("/buildPizzaMeal") public String buildPizzaMeal(PizzaMeal pizza,
-	 * Model model) { PizzaMeal customerMeal =
-	 * pizzaBuilder.buildPizza(pizza.getName(), pizza.getSize());
-	 * customerMeal.setItemsList(pizza.getItemsList());
-	 * 
-	 * model.addAttribute("pizzaDetail", customerMeal); return "pizzaDetail"; }
-	 */
-
-	@PostMapping("/buildPizzaMeal")
-	public String buildPizzaMeal(PizzaMeal pizza, Model model) {
-		if (pizza.getName().replaceAll(",", "").equals(String.valueOf(PizzaName.CHICKEN))) {
-
-			ChickenPizzaMeal customerMeal = new ChickenPizzaMeal(pizza.getName(), pizza.getSize());
-			customerMeal.setItemsList(pizza.getItemsList());
-			model.addAttribute("pizzaDetail", customerMeal);
-
-		} else if (pizza.getName().replaceAll(",", "").equals(String.valueOf(PizzaName.CHEESE))) {
-
-			CheesePizzaMeal customerMeal = new CheesePizzaMeal(pizza.getName(), pizza.getSize());
-			customerMeal.setItemsList(pizza.getItemsList());
-			model.addAttribute("pizzaDetail", customerMeal);
-
-		} else if (pizza.getName().replaceAll(",", "").equals(String.valueOf(PizzaName.PEPPERONI))) {
-
-			PepperoniPizzaMeal customerMeal = new PepperoniPizzaMeal(pizza.getName(), pizza.getSize());
-			customerMeal.setItemsList(pizza.getItemsList());
-			model.addAttribute("pizzaDetail", customerMeal);
-
-		} else if (pizza.getName().replaceAll(",", "").equals(String.valueOf(PizzaName.VEGPIZZA))) {
-
-			VegPizzaMeal customerMeal = new VegPizzaMeal(pizza.getName(), pizza.getSize());
-			customerMeal.setItemsList(pizza.getItemsList());
-			model.addAttribute("pizzaDetail", customerMeal);
-
-		} else if (pizza.getName().replaceAll(",", "").equals(String.valueOf(PizzaName.SUPREME))) {
-
-			SupremePizzaMeal customerMeal = new SupremePizzaMeal(pizza.getName(), pizza.getSize());
-			customerMeal.setItemsList(pizza.getItemsList());
-			model.addAttribute("pizzaDetail", customerMeal);
-
-=======
-	CustomerRepository cRepo;
-	@Autowired
-	OrdersRepository oRepo;
-
-
-	@GetMapping({"/", "viewOrder"})
-	public String viewOrder(Model model) {
-		if(oRepo.findAll().isEmpty()) {
-			return addNewItem(model);
->>>>>>> 4f8fcf83a9230b8cce368fa2830880b536466a7b
+	  @GetMapping("/newPizza")
+	  public String createNewPizza(Model model) {	
+		  //this is a model only to display in UI
+		  PizzaMeal pizza =new PizzaMeal();		
+		  pizza.addItem(new Item("onion", null));
+		  pizza.addItem(new Item("bacon",null));
+		  pizza.addItem(new Item("olive",null));
+		  pizza.addItem(new Item("pineapple",null));
+		  pizza.addItem(new Item("pepper",null));
+		  pizza.addItem(new Item("tomato",null));
+		
+		  model.addAttribute("pizzaMeal", pizza);
+		  model.addAttribute("itemsList", pizza.getItemsList());
+		
+		return "pizza";		
+	  }
+	
+		/*
+		 * @PostMapping("/buildPizzaMeal") public String buildPizzaMeal(PizzaMeal pizza,
+		 * Model model) { PizzaMeal customerMeal =
+		 * pizzaBuilder.buildPizza(pizza.getName(), pizza.getSize());
+		 * customerMeal.setItemsList(pizza.getItemsList());
+		 * 
+		 * model.addAttribute("pizzaDetail", customerMeal); return "pizzaDetail"; }
+		 */
+	
+	
+		@PostMapping("/buildPizzaMeal")
+		public String buildPizzaMeal(PizzaMeal pizza, Model model) {
+			if(pizza.getName().replaceAll(",", "").equals(String.valueOf(PizzaName.CHICKEN))) {
+				
+				ChickenPizzaMeal customerMeal = new ChickenPizzaMeal(pizza.getName(), pizza.getSize());
+				customerMeal.setItemsList(pizza.getItemsList());
+				model.addAttribute("pizzaDetail", customerMeal);	
+				
+			}else if(pizza.getName().replaceAll(",", "").equals(String.valueOf(PizzaName.CHEESE))) {
+				
+				CheesePizzaMeal customerMeal = new CheesePizzaMeal(pizza.getName(), pizza.getSize());
+				customerMeal.setItemsList(pizza.getItemsList());
+				model.addAttribute("pizzaDetail", customerMeal);	
+				
+			}else if(pizza.getName().replaceAll(",", "").equals(String.valueOf(PizzaName.PEPPERONI))) {
+				
+				PepperoniPizzaMeal customerMeal = new PepperoniPizzaMeal(pizza.getName(), pizza.getSize());
+				customerMeal.setItemsList(pizza.getItemsList());
+				model.addAttribute("pizzaDetail", customerMeal);	
+				
+			}else if(pizza.getName().replaceAll(",", "").equals(String.valueOf(PizzaName.VEGPIZZA))) {
+				
+				VegPizzaMeal customerMeal = new VegPizzaMeal(pizza.getName(), pizza.getSize());
+				customerMeal.setItemsList(pizza.getItemsList());
+				model.addAttribute("pizzaDetail", customerMeal);	
+				
+			}else if(pizza.getName().replaceAll(",", "").equals(String.valueOf(PizzaName.SUPREME))) {
+				
+				SupremePizzaMeal customerMeal = new SupremePizzaMeal(pizza.getName(), pizza.getSize());
+				customerMeal.setItemsList(pizza.getItemsList());
+				model.addAttribute("pizzaDetail", customerMeal);					
+			}
+			
+			return "pizzaDetail";
 		}
-
+	
+	
+		
+	
+	@GetMapping({ "/order" })
+	public String viewOrder(Model model) {
+		Orders order = new Orders();
+		model.addAttribute("order", order);
 		return "pizzaDetail";
 	}
 
-	/*********************************************************************/
-	/* Customer controller methods */
-	@GetMapping({ "/", "viewAll" })
-	public String viewAllCustomers(Model model) {
-		if (cRepo.findAll().isEmpty()) {
-			return addNewCustomer(model);
-		}
-		model.addAttribute("contacts", cRepo.findAll());
-		return "customer_result";
+	/*
+	 * @GetMapping("/newOrder") public String addNewItem(Model model) { Orders o =
+	 * new Orders(); model.addAttribute("newOrder", o); return "orderForm"; }
+	 */
+
+	@PostMapping("/newOrder")
+	public String addNewOrder(@ModelAttribute Orders order, Model model) {
+		//oRepo.save(order);
+		return "view_order";
 	}
 
-	@GetMapping("/addCustomer")
-	public String addNewCustomer(Model model) {
-		Customer c = new Customer();
-		model.addAttribute("newCustomer", c);
-		return "customerRegistration";
-	}
-
-	@PostMapping("/addCustomer")
-	public String addNewCustomer(@ModelAttribute Customer c, Model model) {
-		cRepo.save(c);
-		return viewAllCustomers(model);
-	}
-
-	@GetMapping("/edit/{id}")
-	public String showUpdateCustomer(@PathVariable("id") int id, Model model) {
-		Customer c = cRepo.findById(id).orElse(null);
-		model.addAttribute("newCustomer", c);
-		return "customerRegistration";
-	}
-
-	@PostMapping("/update/{id}")
-	public String reviseCustomers(Customer c, Model model) {
-		cRepo.save(c);
-		return viewAllCustomers(model);
-	}
-
-	@GetMapping("/delete/{id}")
-	public String deleteUser(@PathVariable("id") int id, Model model) {
-		Customer c = cRepo.findById(id).orElse(null);
-		cRepo.delete(c);
-		return viewAllCustomers(model);
-	}
-	
-	/*********************************************************************/
-	/* Customer controller methods */
-	@GetMapping({"/", "viewAll"})
-	public String viewAllCustomers(Model model) {
-		if(cRepo.findAll().isEmpty()) {
-			return addNewCustomer(model);
-		}
-		model.addAttribute("contacts", cRepo.findAll());
-		return "customer_result";
-	}
-	@GetMapping("/addCustomer")
-	public String addNewCustomer(Model model) {
-		Customer c = new Customer();
-		model.addAttribute("newCustomer", c);
-		return "customerForm";
-	}
-	@PostMapping("/addCustomer")
-	public String addNewCustomer(@ModelAttribute Customer c, Model model) {
-		cRepo.save(c);
-		return viewAllCustomers(model);
-	}
-	@GetMapping("/edit/{id}")
-	public String showUpdateCustomer(@PathVariable("id") int id, Model model) {
-		Customer c = cRepo.findById(id).orElse(null);
-		model.addAttribute("newCustomer", c);
-		return "customerForm";
-	}
-	@PostMapping("/update/{id}")
-	public String reviseCustomers(Customer c, Model model) {
-		cRepo.save(c);
-		return viewAllCustomers(model);
-	}
-	@GetMapping("/delete/{id}")
-	public String deleteUser(@PathVariable("id") int id, Model model) {
-		Customer c = cRepo.findById(id).orElse(null);
-		cRepo.delete(c);
-		return viewAllCustomers(model);
-	}
+	/*
+	 * @GetMapping("/edit/{id}") public String showUpdateOrder(@PathVariable("id")
+	 * int id, Model model) { Orders o = oRepo.findById(id).orElse(null);
+	 * model.addAttribute("newOrder", o); return "orderForm"; }
+	 * 
+	 * @PostMapping("/update/{id}") public String reviseOrder(Orders o, Model model)
+	 * { oRepo.save(o); return viewOrder(model); }
+	 * 
+	 * @GetMapping("/delete/{id}") public String deleteOrder(@PathVariable("id") int
+	 * id, Model model) { Orders o = oRepo.findById(id).orElse(null);
+	 * oRepo.delete(o); return viewOrder(model); }
+	 */
 
 }

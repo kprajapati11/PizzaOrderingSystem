@@ -5,39 +5,54 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Entity
+/*@Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @Embeddable
+*/
+
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Customer {
+	/*
+	 * @Id private int cId; private String Name; private String Phone; private
+	 * String email;
+	 * 
+	 * @Autowired private Address address;
+	 * 
+	 * @OneToMany(targetEntity = Orders.class,cascade = CascadeType.ALL)
+	 * 
+	 * @JoinColumn(name = "cp_fk", referencedColumnName = "id") private List<Orders>
+	 * pizza;
+	 */
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	private String name;
-	private String Phone;
+	private long id;
+	private String fName;
+	private String lName;
+	private String phone;
 	private String email;
+
 	@Autowired
 	private Address address;
-	@OneToMany(mappedBy = "customer", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-	private List<Orders> order;
-	public Customer(String name) {
-		super();
-		this.name = name;
-	}
 	
 	
 
