@@ -1,22 +1,58 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Online Pizza Order - Customer Registration Page</title>
+<meta charset="UTF-8">
+<title>E.K.O Pizza Ordering</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  
+    <!-- styles -->
+  <link rel="stylesheet" href="assets/css/fancybox/jquery.fancybox.css">
+  <link href="assets/css/bootstrap.css" rel="stylesheet" />
+  <link href="assets/css/bootstrap-theme.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/slippry.css">
+  <link href="assets/css/style.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/color/default.css">
+  <script src="assets/js/modernizr.custom.js"></script>
+  <!-- =======================================================-->
+ <style>
+
+</style>
+ 
 </head>
-
 <body>
-	<form th:object="${newCustomer}"  th:action="@{/update/{id}(id=${newCustomer.id})}"  method=POST>
-	Name: <input name="name" size="20"  th:field="*{name}"><br />
-	Order Number:<input name="orderNumber" size="20" th:field="*{orderNumber}"><br />
-	Phone Number: <input name="phone" size="20" th:field="*{phone}"><br />	
-	Street: <input name="address.street" size="20"  th:field="*{address.street}"><br />
-	City: <input name="address.city" size="20"  th:field="*{address.city}"><br />
-	State: <input name="address.state" size="20"  th:field="*{address.state}"><br /> 
-	<br />
-	<input name="Submit" type="submit" value="submit" />
-	</form>
-	<a href="../viewAll">View All Customers</a>
 
+<div id = "container-fluid">
+<!-------Header start --->
+<div th:replace ="header :: myheader"></div>
+ <!-- SlideShow end -->
+  
+
+<div class = "container">
+<!---***place code here***-->
+	<form th:object="${newCustomer}" th:action="@{/update/{id}(id=${newCustomer.id})}" method=POST>
+
+	Name: <p><input name="name" size="20" th:field="*{name}"></p> 
+	email: 	<p><input name="email" size="20" th:field="*{email}"></p>
+	Phone Number: <p><input name="phone" size="20" th:field="*{phone}"></p>
+	Street: <p><input name="address.street" size="20" th:field="*{address.street}"></p>
+	City: <p><input name="address.city" size="20" th:field="*{address.city}"></p>
+	State:<p><input name="address.state" size="20" th:field="*{address.state}"></p><br />
+	<input name="submit" type="submit" value="submit" />
+	
+</form>
+	<br/><br/>
+	<p><a  type="button" href="../newPizza" role ="button">Order Now</a><p>
+
+</div>
+<!-----End Code Here----->
+
+
+<!-------Footer Begin--->
+ <div th:insert = "footer :: foot"></div>
+</div>
 </body>
 </html>

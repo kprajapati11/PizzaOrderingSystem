@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>View All Books</title>
+<title>E.K.O Pizza Ordering</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
@@ -21,46 +21,40 @@
  <style>
 
 </style>
- 
 </head>
 <body>
-
 <div id = "container-fluid">
 <!-------Header start --->
 <div th:replace ="header :: myheader"></div>
  <!-- SlideShow end -->
   
-<!---***place code here***-->
 <br/><br/>
 <div class = "container">
-<p>Your Meal Order Description</p>
+<!---***place code here***-->
+<form >
+<table>
+<tr th:each="currentCustomer : ${customers}" >
+	<td th:text="${currentCustomer.id}" />
+		<td th:text="${currentCustomer.name}" />
+		<td th:text="${currentCustomer.phone}" />
+		<td th:text="${currentCustomer.email}" />
+		<td th:text="${currentCustomer.address.street}" />
+		<td th:text="${currentCustomer.address.city}" />
+		<td th:text="${currentCustomer.address.state}" />
+		
+		<td><a th:href="@{/edit/{id}(id=${currentCustomer.id})}">Edit</a></td>
+		<td><a th:href="@{/delete/{id}(id=${currentCustomer.id})}">Delete</a></td>
+</tr>
+</table>
+</form>
 </div>
 <div class = "container">
-	<form>
-		<table>
-			<tbody th:each="currentPizza : ${pizzaDetail}">
-				<tr>
-					<td>Meal Type : </td>
-					<td th:text="${currentPizza.name}"/>
-				</tr>
-				<tr>
-					<td> Meal Size : </td>
-					<td th:text="${currentPizza.size}" />
-				</tr>
-				<tr>
-					<td> Total Price :$ </td>
-					<td th:text="${currentPizza.totalPrice}" /> 					
-				</tr>	
-			</tbody>	
-		</table>
-	</form>
-	<a href="../newPizza" type ="button">Build Another Pizza</a>
+<p><a href="../addCustomer">Add a new customer</a></p><br/>
+<p><a href="../newPizza" >BuildPizza</a></p><br/>
 </div>
 <!-----End Code Here----->
-
-
 <!-------Footer Begin--->
- <div th:insert = "footer :: foot"></div>
+  <div th:insert = "footer :: foot"></div>
 </div>
 </body>
 </html>
