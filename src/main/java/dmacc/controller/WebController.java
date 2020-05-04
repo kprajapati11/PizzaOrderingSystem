@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import dmacc.beans.Customer;
 import dmacc.beans.Orders;
 import dmacc.model.CheesePizzaMeal;
 import dmacc.model.ChickenPizzaMeal;
 import dmacc.model.Item;
 import dmacc.model.PepperoniPizzaMeal;
-import dmacc.model.PizzaBuilder;
 import dmacc.model.PizzaMeal;
 import dmacc.model.SupremePizzaMeal;
 import dmacc.model.VegPizzaMeal;
@@ -135,5 +135,50 @@ public class WebController {
 	 * id, Model model) { Orders o = oRepo.findById(id).orElse(null);
 	 * oRepo.delete(o); return viewOrder(model); }
 	 */
+
+
+	/*********************************************************************/
+	/* Customer controller methods */
+	@GetMapping({ "/", "viewAll" })
+	public String viewAllCustomers(Model model) {
+		if (cRepo.findAll().isEmpty()) {
+			return addNewCustomer(model);
+		}
+		model.addAttribute("contacts", cRepo.findAll());
+		return "customer_result";
+	}
+
+	@GetMapping("/addCustomer")
+	public String addNewCustomer(Model model) {
+		Customer c = new Customer();
+		model.addAttribute("newCustomer", c);
+		return "customerRegistration";
+	}
+
+	@PostMapping("/addCustomer")
+	public String addNewCustomer(@ModelAttribute Customer c, Model model) {
+		cRepo.save(c);
+		return viewAllCustomers(model);
+	}
+
+	@GetMapping("/edit/{id}")
+	public String showUpdateCustomer(@PathVariable("id") int id, Model model) {
+		Customer c = cRepo.findById(id).orElse(null);
+		model.addAttribute("newCustomer", c);
+		return "customerRegistration";
+	}
+
+	@PostMapping("/update/{id}")
+	public String reviseCustomers(Customer c, Model model) {
+		cRepo.save(c);
+		return viewAllCustomers(model);
+	}
+
+	@GetMapping("/delete/{id}")
+	public String deleteUser(@PathVariable("id") int id, Model model) {
+		Customer c = cRepo.findById(id).orElse(null);
+		cRepo.delete(c);
+		return viewAllCustomers(model);
+	}
 
 }
