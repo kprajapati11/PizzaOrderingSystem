@@ -71,40 +71,6 @@ public class Orders {
 	public void setCreditCard(String creditCard) {
 		this.creditCard = creditCard;
 	}
+
+	
 }
-
-/* 
- * package dmacc.beans;
-
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-
-
-
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
-@Entity
-@Data
-@NoArgsConstructor
-@ToString
-public class Orders {
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private int orderId;
-		private String orderNum;
-		@ManyToOne (cascade=CascadeType.PERSIST)
-		@JoinColumn(name="ID")
-		private Customer customer;
-
-}
- */
