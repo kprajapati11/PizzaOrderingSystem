@@ -1,12 +1,16 @@
+package dmacc.repository;
 
-  package dmacc.repository;
-  
-  import org.springframework.data.jpa.repository.JpaRepository;
+import javax.transaction.Transactional;
 
-import dmacc.beans.Orders;
-  
-  
-  public interface OrdersRepository extends JpaRepository<Orders, Integer> {
-  
-  }
- 
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import dmacc.model.Order;
+
+@Repository
+@Transactional
+public interface OrderRepository extends JpaRepository<Order, Long>
+{
+
+}

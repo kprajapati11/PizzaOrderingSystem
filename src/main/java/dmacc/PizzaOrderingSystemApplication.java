@@ -14,12 +14,4 @@ public class PizzaOrderingSystemApplication extends WebMvcConfigurerAdapter {
 		SpringApplication.run(PizzaOrderingSystemApplication.class, args);
 	}
 
-	//Add converter and configuration annotation
-    @Override
-    public void addFormatters(FormatterRegistry registry) {
-        registry.addConverter(new StringToItemConverter());
-    }
-
-
-
 }

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>E.K.O Pizza Ordering</title>
+<title>Create Pizza</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
@@ -21,40 +21,53 @@
  <style>
 
 </style>
+ 
 </head>
 <body>
+
 <div id = "container-fluid">
 <!-------Header start --->
 <div th:replace ="header :: myheader"></div>
  <!-- SlideShow end -->
   
-<br/><br/>
-<div class = "container">
 <!---***place code here***-->
-<form >
-<table>
-<tr th:each="currentCustomer : ${customers}" >
-	<td th:text="${currentCustomer.id}" />
-		<td th:text="${currentCustomer.name}" />
-		<td th:text="${currentCustomer.phone}" />
-		<td th:text="${currentCustomer.email}" />
-		<td th:text="${currentCustomer.address.street}" />
-		<td th:text="${currentCustomer.address.city}" />
-		<td th:text="${currentCustomer.address.state}" />
-		
-		<td><a th:href="@{/edit/{id}(id=${currentCustomer.id})}">Edit</a></td>
-		<td><a th:href="@{/delete/{id}(id=${currentCustomer.id})}">Delete</a></td>
-</tr>
-</table>
-</form>
-</div>
 <div class = "container">
-<p><a href="../addCustomer">Add a new customer</a></p><br/>
-<p><a href="../newPizza" >BuildPizza</a></p><br/>
 </div>
+
+<h1>Create your pizza</h1>
+
+	<form action="" method="post">
+		<fieldset>
+			Size: <select th:field="${pizza.size}">
+				<option value=""></option>
+				<option th:each="pizzaSize: ${pizzaSizes}"
+					th:value="${pizzaSize}"
+					th:text="${pizzaSize.description}"></option>
+			</select> 
+			<br /> 
+			Crust Type: <select th:field="${pizza.crustType}">
+				<option value=""></option>
+				<option th:each="pizzaCrustType: ${pizzaCrustTypes}"
+					th:value="${pizzaCrustType}"
+					th:text="${pizzaCrustType.description}"></option>
+
+			</select>
+		</fieldset>
+		<fieldset>
+			Toppings:
+			<div th:each="topping: ${toppings}">
+				<input type="checkbox" th:value="${topping.toppingId}" th:field="${pizza.toppings}" /> 
+					<label th:for="${#ids.prev('toppings')}" th:text="${topping.description}"></label>
+				<br />
+			</div>
+		</fieldset>
+		<button>Add Pizza to Order</button>
+	</form>
 <!-----End Code Here----->
+
+
 <!-------Footer Begin--->
-  <div th:insert = "footer :: foot"></div>
+ <div th:insert = "footer :: foot"></div>
 </div>
 </body>
 </html>

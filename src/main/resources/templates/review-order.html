@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>View All Books</title>
+<title>Review Order</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
@@ -31,30 +31,22 @@
  <!-- SlideShow end -->
   
 <!---***place code here***-->
-<br/><br/>
 <div class = "container">
-<p>Your Meal Order Description</p>
-</div>
-<div class = "container">
-	<form>
-		<table>
-			<tbody th:each="currentPizza : ${pizzaDetail}">
-				<tr>
-					<td>Meal Type : </td>
-					<td th:text="${currentPizza.name}"/>
-				</tr>
-				<tr>
-					<td> Meal Size : </td>
-					<td th:text="${currentPizza.size}" />
-				</tr>
-				<tr>
-					<td> Total Price :$ </td>
-					<td th:text="${currentPizza.totalPrice}" /> 					
-				</tr>	
-			</tbody>	
-		</table>
-	</form>
-	<a href="../newPizza" type ="button">Build Another Pizza</a>
+	<h1>Review Order</h1>
+
+  
+  <!-- This is for editing individual orders -->
+  <div th:if="${order} != null">
+  <div th:replace="fragments/pizza-details :: pizzaDetailsFinal"></div>
+  
+  <div>--------</div>
+  <div>Total Price: <span th:text="'$ ' + ${#numbers.formatDecimal(order.finalPrice, 0, 'COMMA', 2, 'POINT')}"></span></div>
+  <form th:action="@{/orders/} + ${order.orderId} + '/finalize'" method="post">
+    <button>Finalize order</button>
+  </form>
+  <a th:href="@{/orders/} + ${order.orderId}">Back to order</a>
+  </div>
+
 </div>
 <!-----End Code Here----->
 
